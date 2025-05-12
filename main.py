@@ -83,7 +83,9 @@ def plot_field(axes, x, y, p):
 
 @njit
 def propagate(source, target) -> np.complex128:
-    return np.exp(-1j * WAVENUMBER * np.linalg.norm(target - source))
+    return np.exp(-1j * WAVENUMBER * np.linalg.norm(target - source)) / np.linalg.norm(
+        target - source
+    )
 
 
 @njit(parallel=True)
